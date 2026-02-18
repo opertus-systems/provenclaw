@@ -1,0 +1,17 @@
+[package]
+name = "provenclaw-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "provenclaw"
+path = "src/main.rs"
+
+[dependencies]
+clap.workspace = true
+provenclaw-core = { path = "../provenclaw-core" }
+provenclaw-host = { path = "../provenclaw-host" }
+provenclaw-tui = { path = "../provenclaw-tui" }
+serde_json.workspace = true
+thiserror.workspace = true

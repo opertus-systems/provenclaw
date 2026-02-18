@@ -1,0 +1,28 @@
+[package]
+name = "provenclaw-host"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+name = "provenclaw_host"
+path = "src/lib.rs"
+
+[[bin]]
+name = "provenclawd"
+path = "src/main.rs"
+
+[dependencies]
+base64.workspace = true
+chrono.workspace = true
+dirs.workspace = true
+ed25519-dalek.workspace = true
+hex.workspace = true
+provenclaw-audit = { path = "../provenclaw-audit" }
+provenclaw-core = { path = "../provenclaw-core" }
+provenclaw-policy = { path = "../provenclaw-policy" }
+rand.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+uuid.workspace = true

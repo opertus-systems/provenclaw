@@ -1,0 +1,23 @@
+workspace_dir = "/home/operator/.provenclaw/workspace"
+policy_dir = "/home/operator/.provenclaw/policies"
+receipt_dir = "/home/operator/.provenclaw/receipts"
+provenact_path = "provenact"
+log_level = "info"
+network_enabled = false
+enforcement_mode = "warn"
+key_provider = "hybrid"
+receipt_signing_required = true
+audit_chain_required = true
+coverage_slo_target = 99.5
+coverage_slo_window_days = 14
+
+[provenance_requirements]
+require_digest = true
+require_signature = true
+require_attestation = true
+attestation_max_age_days = 30
+
+[runtime_limits]
+timeout_ms = 30000
+memory_limit_mb = 256
+max_output_bytes = 1048576
