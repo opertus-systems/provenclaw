@@ -7,6 +7,7 @@ required_paths=(
   "configs/policy.default.json"
   "configs/provenclaw.example.toml"
   "docs/ARCHITECTURE.md"
+  "docs/CONTROL_PLANE.md"
   "docs/THREAT_MODEL.md"
   "docs/OPERATIONS.md"
   "docs/ENTERPRISE_README.md"
@@ -15,6 +16,7 @@ required_paths=(
   "crates/provenclaw-host/src/lib.rs"
   "crates/provenclaw-policy/src/lib.rs"
   "crates/provenclaw-audit/src/lib.rs"
+  "crates/provenclaw-control-plane/src/lib.rs"
   "crates/provenclaw-cli/src/main.rs"
   "crates/provenclaw-tui/src/lib.rs"
 )

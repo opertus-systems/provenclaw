@@ -4,6 +4,7 @@ members = [
   "crates/provenclaw-host",
   "crates/provenclaw-policy",
   "crates/provenclaw-audit",
+  "crates/provenclaw-control-plane",
   "crates/provenclaw-cli",
   "crates/provenclaw-api",
   "crates/provenclaw-tui",

@@ -19,6 +19,7 @@ dirs.workspace = true
 ed25519-dalek.workspace = true
 hex.workspace = true
 provenclaw-audit = { path = "../provenclaw-audit" }
+provenclaw-control-plane = { path = "../provenclaw-control-plane" }
 provenclaw-core = { path = "../provenclaw-core" }
 provenclaw-policy = { path = "../provenclaw-policy" }
 rand.workspace = true
