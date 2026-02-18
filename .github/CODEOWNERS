@@ -1,0 +1,15 @@
+# ProvenClaw ownership map
+# Replace individual owners with org teams as they are created.
+
+# Default ownership
+* @markthom-as
+
+# Security-critical surfaces
+/crates/provenclaw-core/ @markthom-as
+/crates/provenclaw-host/ @markthom-as
+/crates/provenclaw-policy/ @markthom-as
+/crates/provenclaw-audit/ @markthom-as
+/.github/workflows/ @markthom-as
+/deny.toml @markthom-as
+/Cargo.toml @markthom-as
+/Cargo.lock @markthom-as
