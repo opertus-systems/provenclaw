@@ -1,0 +1,13 @@
+[graph]
+all-features = true
+
+[advisories]
+yanked = "deny"
+
+[bans]
+multiple-versions = "allow"
+wildcards = "allow"
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"

@@ -1,0 +1,14 @@
+[package]
+name = "provenclaw-tui"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+crossterm.workspace = true
+provenclaw-audit = { path = "../provenclaw-audit" }
+provenclaw-core = { path = "../provenclaw-core" }
+provenclaw-host = { path = "../provenclaw-host" }
+ratatui.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true

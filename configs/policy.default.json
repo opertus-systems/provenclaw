@@ -1,0 +1,25 @@
+{
+  "allowed_signers": ["acme.sec"],
+  "capabilities": {
+    "net.http": {
+      "allow": [
+        {
+          "host": "api.example.com",
+          "path": "/v1/",
+          "method": "POST"
+        }
+      ]
+    },
+    "fs.read": {
+      "allow": ["/data/"]
+    }
+  },
+  "secrets": {
+    "materialize": false
+  },
+  "signature": {
+    "key_id": "policy-key",
+    "algorithm": "ed25519",
+    "signature": "placeholder"
+  }
+}
