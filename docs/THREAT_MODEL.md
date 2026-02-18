@@ -11,6 +11,7 @@
 ## Trust boundaries
 
 - CLI/user input -> host runtime.
+- Host runtime -> control-plane contract boundary.
 - Host runtime -> verified bundle runtime.
 - Host runtime -> network egress proxy boundary.
 - Host runtime -> policy and audit storage.

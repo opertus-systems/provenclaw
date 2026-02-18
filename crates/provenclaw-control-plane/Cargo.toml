@@ -1,0 +1,10 @@
+[package]
+name = "provenclaw-control-plane"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+provenclaw-core = { path = "../provenclaw-core" }
+serde.workspace = true
+thiserror.workspace = true

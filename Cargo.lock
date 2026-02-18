@@ -1213,6 +1213,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "provenclaw-control-plane"
+version = "0.1.0"
+dependencies = [
+ "provenclaw-core",
+ "serde",
+ "thiserror 2.0.18",
+]
+
+[[package]]
 name = "provenclaw-core"
 version = "0.1.0"
 dependencies = [
@@ -1236,6 +1245,7 @@ dependencies = [
  "ed25519-dalek",
  "hex",
  "provenclaw-audit",
+ "provenclaw-control-plane",
  "provenclaw-core",
  "provenclaw-policy",
  "rand",

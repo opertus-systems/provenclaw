@@ -9,6 +9,9 @@ use chrono::{Duration, Utc};
 use ed25519_dalek::{Signer, SigningKey};
 use provenance::{ProvenactCliVerifier, Verifier};
 use provenclaw_audit::{AuditChainReport, AuditError, AuditRecord, AuditStore, ReceiptSummary};
+use provenclaw_control_plane::{
+    ControlPlane, ControlPlaneHealth, ControlPlaneProfile, LocalControlPlane,
+};
 use provenclaw_core::{
     CapabilitySpec, CoreError, EnforcementMode, FsRule, HttpRule, InvocationContext, MainConfig,
     ReceiptEnvelope, RiskLevel, SecurityPosture, ToolRegistration, ToolRegistry,
@@ -181,8 +184,15 @@ pub struct ProvenanceRunSummary {
 pub struct DiagnosticsReport {
     pub security_posture: SecurityPosture,
     pub secret_provider: SecretProviderStatus,
+    pub control_plane: ControlPlaneStatus,
     pub enforcement_slo: EnforcementSloReport,
     pub recent_provenance: Vec<ProvenanceRunSummary>,
+}
+
+#[derive(Debug, Clone, Serialize)]
+pub struct ControlPlaneStatus {
+    pub profile: ControlPlaneProfile,
+    pub health: ControlPlaneHealth,
 }
 
 #[derive(Debug, Clone)]
@@ -682,11 +692,22 @@ impl Host {
         Ok(DiagnosticsReport {
             security_posture: self.get_security_posture()?,
             secret_provider: default_provider_status(),
+            control_plane: self.get_control_plane_status()?,
             enforcement_slo: self.evaluate_enforcement_slo(
                 config.coverage_slo_window_days,
                 config.coverage_slo_target,
             )?,
             recent_provenance: self.get_provenance_report(25)?,
+        })
+    }
+
+    pub fn get_control_plane_status(&self) -> Result<ControlPlaneStatus, HostError> {
+        self.init_layout()?;
+        let config = self.load_config()?;
+        let control_plane = LocalControlPlane::for_local_host(config.enforcement_mode.clone());
+        Ok(ControlPlaneStatus {
+            profile: control_plane.profile(),
+            health: control_plane.health(),
         })
     }
 
@@ -1179,6 +1200,7 @@ fn load_receipt_items(receipt_dir: &Path) -> Result<Vec<ReceiptListItem>, HostEr
 #[cfg(test)]
 mod tests {
     use super::*;
+    use provenclaw_control_plane::{ControlPlaneHealth, ControlPlaneMode, TransportKind};
     #[cfg(unix)]
     use std::os::unix::fs::PermissionsExt;
 
@@ -1387,5 +1409,23 @@ exit 1
 
         let receipts = host.list_receipts().unwrap();
         assert_eq!(receipts.len(), 1);
+    }
+
+    #[test]
+    fn diagnostics_report_exposes_local_control_plane_boundary() {
+        let root = std::env::temp_dir().join(format!("provenclaw-host-test-{}", Uuid::new_v4()));
+        let host = Host::with_paths(HostPaths::from_base_dir(root));
+        host.init_layout().unwrap();
+
+        let report = host.diagnostics_report().unwrap();
+        assert_eq!(report.control_plane.health, ControlPlaneHealth::Ready);
+        assert_eq!(
+            report.control_plane.profile.mode,
+            ControlPlaneMode::LocalOnly
+        );
+        assert_eq!(
+            report.control_plane.profile.endpoint.transport,
+            TransportKind::InProcess
+        );
     }
 }

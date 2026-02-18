@@ -20,6 +20,7 @@ Phase 0.5 adds a TUI-first operator experience (`provenclaw`) plus script-friend
 - `/Users/jove/code/provenclaw/crates/provenclaw-host`: runtime, provenance, signing, trust, enforcement.
 - `/Users/jove/code/provenclaw/crates/provenclaw-policy`: policy parsing/evaluation/signature checks.
 - `/Users/jove/code/provenclaw/crates/provenclaw-audit`: receipt persistence and audit-chain verification.
+- `/Users/jove/code/provenclaw/crates/provenclaw-control-plane`: control-plane contracts, transport/auth hooks, authorization boundary.
 - `/Users/jove/code/provenclaw/crates/provenclaw-cli`: command router and automation interface.
 - `/Users/jove/code/provenclaw/crates/provenclaw-tui`: full-screen terminal UX (ratatui + crossterm).
 - `/Users/jove/code/provenclaw/crates/provenclaw-api`: optional local API schemas.
@@ -50,6 +51,7 @@ cargo run -p provenclaw-cli -- diagnostics security-report
 ## Docs
 
 - `/Users/jove/code/provenclaw/docs/ARCHITECTURE.md`
+- `/Users/jove/code/provenclaw/docs/CONTROL_PLANE.md`
 - `/Users/jove/code/provenclaw/docs/THREAT_MODEL.md`
 - `/Users/jove/code/provenclaw/docs/OPERATIONS.md`
 - `/Users/jove/code/provenclaw/docs/ENTERPRISE_README.md`
